@@ -17,7 +17,7 @@ import Rock from '../assets/types/rock.png';
 import Steel from '../assets/types/steel.png';
 import Water from '../assets/types/water.png';
 
-export const buttons = [
+export const BUTTONS = [
     {
         id: 1,
         name: 'Bug',
