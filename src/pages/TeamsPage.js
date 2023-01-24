@@ -1,5 +1,10 @@
+
+import TeamList from '../features/teams/TeamList';
+
 const TeamsPage = () => {
-    return <div>TeamsPage</div>;
+    return (
+        <TeamList />
+    );
 };
 
 export default TeamsPage;

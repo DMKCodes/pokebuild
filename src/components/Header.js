@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { 
-    Navbar, 
+import {
+    Navbar,
     NavbarBrand,
     Collapse,
     NavbarToggler,
@@ -14,9 +14,18 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <Navbar dark color='primary' sticky='top' expand='md'>
+        <Navbar
+            dark
+            color='primary'
+            sticky='top'
+            expand='md'
+        >
             <NavbarBrand className='d-flex align-items-center' href='/'>
-                <img src={PokeLogo} alt='pokeball logo' className='site-logo float-start ms-3'/>
+                <img
+                    src={PokeLogo}
+                    alt='pokeball logo'
+                    className='site-logo float-start ms-3'
+                />
                 <h1 className='mt-2'>PokéBuild</h1>
             </NavbarBrand>
             <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
@@ -28,9 +37,6 @@ const Header = () => {
                         </NavLink>
                         <NavLink className='nav-link' to='/teams'>
                             Teams
-                        </NavLink>
-                        <NavLink className='nav-link' to='/vote'>
-                            Vote
                         </NavLink>
                     </NavItem>
                 </Nav>
