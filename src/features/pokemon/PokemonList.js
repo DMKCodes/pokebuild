@@ -1,12 +1,22 @@
+import { useSelector } from 'react-redux';
+import { selectAllPokemon } from './pokemonSlice';
 import { Col, Row } from 'reactstrap';
 import PokemonCard from './PokemonCard';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
 
-const PokemonList = (pokemon) => {
-    console.log(pokemon);
+const PokemonList = () => {
+    const pokemon = useSelector(selectAllPokemon);
+    const isLoading = useSelector((state) => state.pokemon.isLoading);
+    const errMsg = useSelector((state) => state.pokemon.errMsg);
 
-    return (
+    return isLoading ? (
+        <Loading />
+    ) : errMsg ? (
+        <Error errMsg={errMsg} />
+    ) : (
         <Row className='ms-auto'>
-            {pokemon.pokemon.map((pokemon) => {
+            {pokemon.map((pokemon) => {
                 return (
                     <Col
                         lg='2'

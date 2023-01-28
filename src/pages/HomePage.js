@@ -1,31 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Container } from 'reactstrap';
 import Filter from '../components/Filter';
 import PokemonList from '../features/pokemon/PokemonList';
-import fetchPokemon from '../utils/fetchPokemon';
+import { selectAllPokemon } from '../features/pokemon/pokemonSlice';
 
 const HomePage = () => {
-    const [pokemon, setPokemon] = useState([]);
-    const [origPokemon, setOrigPokemon] = useState([]);
-
-    useEffect(() => {
-        const getPokemon = async () => {
-            const allPokemon = await fetchPokemon;
-            setPokemon(allPokemon);
-            setOrigPokemon(allPokemon);
-        };
-        getPokemon();
-    }, [])
+    const pokemon = useSelector(selectAllPokemon);
+    const [displayPokemon, setDisplayPokemon] = useState([pokemon]);
 
     return (
         <Container>
             <Filter 
-                pokemon={pokemon} 
-                setPokemon={setPokemon}
-                origPokemon={origPokemon}
-                setOrigPokemon={setOrigPokemon}
+                pokemon={pokemon}
+                setDisplayPokemon={setDisplayPokemon}
             />
-            <PokemonList pokemon={pokemon}/>
+            <PokemonList pokemon={displayPokemon}/>
         </Container>
     );
 };

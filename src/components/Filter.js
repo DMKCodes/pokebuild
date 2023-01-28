@@ -9,21 +9,21 @@ import {
 } from 'reactstrap';
 import { BUTTONS } from '../app/shared/BUTTONS';
 
-const Filter = ({ pokemon, setPokemon, origPokemon }) => {
+const Filter = ({ pokemon, setDisplayPokemon }) => {
 
     const filterPokemonByType = (value) => {
         const filteredPokemon = pokemon.filter(
             (pokemon) => pokemon.types.includes(value)
         );
-        setPokemon(filteredPokemon);
+        setDisplayPokemon(filteredPokemon);
     };
 
     const filterPokemonByName = (value) => {
         // Finish this.
     };
 
-    const resetPokemon = (origPokemon) => {
-        setPokemon(origPokemon);
+    const resetPokemon = (pokemon) => {
+        setDisplayPokemon(pokemon);
     };
 
     return (
@@ -52,7 +52,7 @@ const Filter = ({ pokemon, setPokemon, origPokemon }) => {
                 <Col xs='2' className='d-flex justify-content-center m-auto'>
                     <button
                         key={19}
-                        onClick={() => resetPokemon(origPokemon)}
+                        onClick={() => resetPokemon(pokemon)}
                         className='mb-3'
                     >
                         Reset

@@ -4,11 +4,11 @@ import {
     CardTitle, 
     CardSubtitle
 } from 'reactstrap';
+import { capitalize } from '../../utils/capitalize';
 
 const PokemonCard = ({ pokemon }) => {
     const { id, name, image, types } = pokemon;
-    const capName = name[0].toUpperCase() + name.substring(1);
-    const capTypes = types.map((type) => type[0].toUpperCase() + type.substring(1));
+    const capName = capitalize(name);
 
     return (
         <Card className='mb-5'>
@@ -16,9 +16,11 @@ const PokemonCard = ({ pokemon }) => {
                 ({id}) {capName}
             </CardTitle>
             <CardSubtitle className='border-bottom p-1'>
-                Types: {capTypes.join(', ')}
+                Types: {types.map((type) => {
+                    return capitalize(type.type.name);
+                }).join(', ')}
             </CardSubtitle>
-            <CardImg src={image[0]} className='card-img p-2 border-bottom' />
+            <CardImg src={image} className='card-img p-2 border-bottom' />
         </Card>
     );
 };

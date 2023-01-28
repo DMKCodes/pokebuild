@@ -1,9 +1,8 @@
-
-import TeamList from '../features/teams/TeamList';
+import TeamsList from '../features/teams/TeamsList';
 
 const TeamsPage = () => {
     return (
-        <TeamList />
+        <TeamsList />
     );
 };
 

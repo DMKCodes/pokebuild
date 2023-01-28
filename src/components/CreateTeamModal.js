@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
     Modal,
     ModalHeader,
@@ -10,8 +11,10 @@ import {
     Input,
     Container
 } from 'reactstrap';
+import { selectAllTeams } from '../features/teams/teamsSlice';
 
-const CreateTeamModal = ({ teams, setTeams }) => {
+const CreateTeamModal = () => {
+    const teams = useSelector(selectAllTeams);
     const [createTeamModalOpen, setCreateTeamModalOpen] = useState(false);
     const [teamName, setTeamName] = useState('');
 
@@ -22,8 +25,8 @@ const CreateTeamModal = ({ teams, setTeams }) => {
             teamName: teamName,
             pokemonOnTeam: []
         };
-        teams.push(newTeam);
-        setTeams(teams);
+        // teams.push(newTeam);
+        // setTeams(teams);
         setCreateTeamModalOpen(false);
     };
 
