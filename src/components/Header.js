@@ -16,15 +16,15 @@ const Header = () => {
     return (
         <Navbar
             dark
-            color='primary'
             sticky='top'
             expand='md'
+            className='primary-blue'
         >
-            <NavbarBrand className='d-flex align-items-center' href='/'>
+            <NavbarBrand className='navbar-brand' href='/'>
                 <img
                     src={PokeLogo}
-                    alt='pokeball logo'
-                    className='site-logo float-start ms-3'
+                    alt='Pokeball Logo'
+                    className='site-logo'
                 />
                 <h1 className='mt-2'>PokéBuild</h1>
             </NavbarBrand>
@@ -32,11 +32,17 @@ const Header = () => {
             <Collapse isOpen={menuOpen} navbar>
                 <Nav className="ms-auto" navbar>
                     <NavItem>
-                        <NavLink className='nav-link' to='/'>
-                            Builder
+                        <NavLink 
+                            className='nav-link' 
+                            to='/'
+                        >
+                            Pokédex
                         </NavLink>
-                        <NavLink className='nav-link' to='/teams'>
-                            Teams
+                        <NavLink 
+                            className='nav-link' 
+                            to='/teams'
+                        >
+                            My Teams
                         </NavLink>
                     </NavItem>
                 </Nav>

@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
+    Button,
     Col,
     Container,
     Row,
@@ -7,23 +10,31 @@ import {
     Input,
     Label
 } from 'reactstrap';
+import { 
+    filterPokemonByType, 
+    filterPokemonByName,
+    resetPokemon
+} from '../features/pokemon/pokemonSlice';
 import { BUTTONS } from '../app/shared/BUTTONS';
 
-const Filter = ({ pokemon, setDisplayPokemon }) => {
+// Need to update Search to reset when empty / update dynamically.
 
-    const filterPokemonByType = (value) => {
-        const filteredPokemon = pokemon.filter(
-            (pokemon) => pokemon.types.includes(value)
-        );
-        setDisplayPokemon(filteredPokemon);
+const Filter = () => {
+    const dispatch = useDispatch();
+
+    const [textInput, setTextInput] = useState('');
+
+    const filterByType = (type) => {
+        dispatch(filterPokemonByType(type));
     };
 
-    const filterPokemonByName = (value) => {
-        // Finish this.
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(filterPokemonByName(textInput));
     };
 
-    const resetPokemon = (pokemon) => {
-        setDisplayPokemon(pokemon);
+    const resetPokemonList = () => {
+        dispatch(resetPokemon());
     };
 
     return (
@@ -33,14 +44,17 @@ const Filter = ({ pokemon, setDisplayPokemon }) => {
                     <p>Filter By Type</p>
                     {BUTTONS.map((item) => {
                         return (
-                            <button 
-                                className='type-button' 
+                            <button
                                 key={item.id}
-                                onClick={() => filterPokemonByType(item.value)}
+                                className='type-button'
+                                data-toggle='tooltip'
+                                data-placement='top'
+                                title={item.name}
+                                onClick={() => filterByType(item.name)}
                             >
                                 <img 
                                     src={item.image} 
-                                    alt={item.value} 
+                                    alt={item.name} 
                                     className='type-img' 
                                 />
                             </button>
@@ -50,33 +64,32 @@ const Filter = ({ pokemon, setDisplayPokemon }) => {
             </Row>
             <Row>
                 <Col xs='2' className='d-flex justify-content-center m-auto'>
-                    <button
-                        key={19}
-                        onClick={() => resetPokemon(pokemon)}
+                    <Button
                         className='mb-3'
+                        key={19}
+                        onClick={() => resetPokemonList()}
                     >
                         Reset
-                    </button>
+                    </Button>
                 </Col>
             </Row>
             <Row>
                 <Col xs='12' sm='8' md='6' className='mx-auto'>
-                    <Form onSubmit={filterPokemonByName()}>
+                    <Form onSubmit={(handleSubmit)}>
                         <FormGroup className='text-center'>
-                            <Label for='search'>Search By Name</Label>
+                            <Label for='search'>Search By Name: </Label>
                             <Input
                                 type='search'
-                                name='search'
-                                id='search'
                                 placeholder='Search...'
+                                onChange={(e) => setTextInput(e.target.value)}
                             />
-                            <button 
+                            <Button 
                                 type='submit'
                                 value='Submit'
                                 className='mt-3'
                             >
                                 Submit
-                            </button>
+                            </Button>
                         </FormGroup>
                     </Form>
                 </Col>

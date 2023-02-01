@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Modal,
     ModalHeader,
@@ -11,11 +11,13 @@ import {
     Input,
     Container
 } from 'reactstrap';
-import { selectAllTeams } from '../features/teams/teamsSlice';
+import { selectAllTeams, addTeam } from '../features/teams/teamsSlice';
 
 const CreateTeamModal = () => {
     const teams = useSelector(selectAllTeams);
-    const [createTeamModalOpen, setCreateTeamModalOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const [modalOpen, setModalOpen] = useState(false);
     const [teamName, setTeamName] = useState('');
 
     const handleSubmit = (e) => {
@@ -25,20 +27,20 @@ const CreateTeamModal = () => {
             teamName: teamName,
             pokemonOnTeam: []
         };
-        // teams.push(newTeam);
-        // setTeams(teams);
-        setCreateTeamModalOpen(false);
+
+        dispatch(addTeam(newTeam));
+        setModalOpen(false);
     };
 
     return (
         <>
             <Container className='d-flex justify-content-center mt-3'>
-                <Button onClick={() => setCreateTeamModalOpen(true)}>
+                <Button onClick={() => setModalOpen(true)}>
                     Create A New Team
                 </Button>
             </Container>
-            <Modal isOpen={createTeamModalOpen}>
-                <ModalHeader toggle={() => setCreateTeamModalOpen(false)}>
+            <Modal isOpen={modalOpen}>
+                <ModalHeader toggle={() => setModalOpen(false)}>
                     Create A New Team
                 </ModalHeader>
                 <ModalBody>
@@ -48,7 +50,7 @@ const CreateTeamModal = () => {
                                 Name Your Team: 
                             </Label>
                             <Input 
-                                placeholder='Team Name'
+                                placeholder='Team Name' 
                                 onChange={(e) => setTeamName(e.target.value)}
                             />
                             <Button 
