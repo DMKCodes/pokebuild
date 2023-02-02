@@ -5,10 +5,7 @@ import {
     Col,
     Container,
     Row,
-    Form,
-    FormGroup,
-    Input,
-    Label
+    Input
 } from 'reactstrap';
 import { 
     filterPokemonByType, 
@@ -49,7 +46,6 @@ const Filter = () => {
                 <Container className='filter-container mt-3'>
                     <Row className='ms-auto text-center'>
                         <Col className='mt-3 mb-2'>
-                            <p>Filter By Type: </p>
                             {BUTTONS.map((item) => {
                                 return (
                                     <button
@@ -80,8 +76,18 @@ const Filter = () => {
                             </button>
                         </Col>
                     </Row>
+                    <Row className='ms-auto pt-3'>
+                        <Col xs='12' sm='8' md='6' className='mx-auto text-center'>
+                            <Input
+                                type='search'
+                                placeholder='Search by name...'
+                                className='mb-3'
+                                onChange={(e) => dispatch(filterPokemonByName(e.target.value))}
+                            />
+                        </Col>
+                    </Row>
                     <Row className='ms-auto'>
-                        <Col xs='2' className='d-flex justify-content-center m-auto'>
+                        <Col xs='2' className='d-flex justify-content-center mx-auto'>
                             <Button
                                 className='mb-3'
                                 key={19}
@@ -89,27 +95,6 @@ const Filter = () => {
                             >
                                 Reset
                             </Button>
-                        </Col>
-                    </Row>
-                    <Row className='ms-auto'>
-                        <Col xs='12' sm='8' md='6' className='mx-auto'>
-                            <Form>
-                                <FormGroup className='text-center'>
-                                    <Label for='search'>Search By Name: </Label>
-                                    <Input
-                                        type='search'
-                                        placeholder='Search...'
-                                        onChange={(e) => dispatch(filterPokemonByName(e.target.value))}
-                                    />
-                                    <Button 
-                                        type='submit'
-                                        value='Submit'
-                                        className='mt-3'
-                                    >
-                                        Submit
-                                    </Button>
-                                </FormGroup>
-                            </Form>
                         </Col>
                     </Row>
                 </Container>
