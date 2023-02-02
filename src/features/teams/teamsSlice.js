@@ -54,3 +54,9 @@ export const { addTeam, deleteTeam, addPokemonToTeam } = teamsSlice.actions;
 export const selectAllTeams = (state) => {
     return state.teams.teamsArr;
 };
+
+export const selectTeamById = (id) => (state) => {
+    return state.teams.teamsArr.find(
+        (team) => team.id === parseInt(id)
+    );
+};

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Container, Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import PokemonCard from '../pokemon/PokemonCard';
 import { deleteTeam } from './teamsSlice';
 
@@ -19,6 +20,14 @@ const Team = (team) => {
                     <h3 className='m-3 fw-bold'>{teamName}</h3>
                 </Col>
                 <Col className='d-flex justify-content-end'>
+                    <Link to={`/team/${id}`}>
+                        <Button
+                            className='team-btn btn-success mt-3 mb-3 ms-2 me-2'
+                            type='button'
+                        >
+                            Team Details
+                        </Button>
+                    </Link>
                     <Button
                         className='team-btn btn-danger mt-3 mb-3 ms-2 me-2'
                         type='button'

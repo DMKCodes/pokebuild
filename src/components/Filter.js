@@ -23,16 +23,21 @@ const Filter = () => {
 
     const [open, setOpen] = useState(false);
 
+    const resetPokemonList = () => {
+        dispatch(resetPokemon());
+    };
+
     const filterByType = (type) => {
         dispatch(filterPokemonByType(type));
     };
 
     const filterByFavorite = () => {
         dispatch(filterPokemonByFavorites());
-    }
+    };
 
-    const resetPokemonList = () => {
-        dispatch(resetPokemon());
+    const filterByName = (textInput) => {
+        resetPokemonList();
+        dispatch(filterPokemonByName(textInput));
     };
 
     return (
@@ -82,7 +87,7 @@ const Filter = () => {
                                 type='search'
                                 placeholder='Search by name...'
                                 className='mb-3'
-                                onChange={(e) => dispatch(filterPokemonByName(e.target.value))}
+                                onChange={(e) => (filterByName(e.target.value))}
                             />
                         </Col>
                     </Row>

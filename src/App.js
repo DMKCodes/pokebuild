@@ -5,14 +5,17 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import TeamsPage from './pages/TeamsPage';
 import PokemonDetailPage from './pages/PokemonDetailPage';
+import TeamDetailPage from './pages/TeamDetailPage';
 import Header from './components/Header';
 import { fetchPokemon } from './features/pokemon/pokemonSlice';
+import { fetchMoves } from './features/moves/movesSlice';
 
 function App() {
     const dispatch = useDispatch();
   
     useEffect(() => {
         dispatch(fetchPokemon());
+        dispatch(fetchMoves());
     }, [dispatch]);
 
     return (
@@ -24,6 +27,10 @@ function App() {
                 <Route
                     path='/pokemon/:pokemonId'
                     element={<PokemonDetailPage />}
+                />
+                <Route
+                    path='/team/:teamId'
+                    element={<TeamDetailPage />}
                 />
             </Routes>
         </div>

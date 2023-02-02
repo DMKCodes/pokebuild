@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 import { selectPokemonById } from '../features/pokemon/pokemonSlice';
 import PokemonDetails from '../features/pokemon/PokemonDetails';
 
-const PokemonDetailPage = () => {
+const PokemonDetailPage = (id) => {
     const { pokemonId } = useParams();
     const pokemon = useSelector(selectPokemonById(pokemonId));
 

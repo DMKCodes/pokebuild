@@ -9,7 +9,9 @@ const PokemonDetails = ({ pokemon }) => {
     return (
         <Container 
             className='pokemon-detail-container mt-5'
-            style={{ backgroundImage: `linear-gradient(to bottom right, ${bg[0]}, ${bg[1]})` }}
+            style={{ 
+                backgroundImage: `linear-gradient(to bottom right, ${bg[0]}, ${bg[1]})` 
+            }}
         >
             <Row className='pokemon-detail-head pt-3 pb-2'>
                 <Col xs='12' sm='4' className='fc'>
@@ -28,7 +30,7 @@ const PokemonDetails = ({ pokemon }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col className='mb-3 text-center fc'>
+                        <Col className='mb-3 text-center'>
                             {types.map((type) => {
                                 return (
                                     <div 

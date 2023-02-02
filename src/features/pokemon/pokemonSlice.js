@@ -33,6 +33,7 @@ export const fetchPokemon = createAsyncThunk(
 
                     return data;
                 });
+                
                 const pokemonList = Promise.all(pokemon);
                 return (pokemonList);
             })
