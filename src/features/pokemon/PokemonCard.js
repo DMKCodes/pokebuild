@@ -1,21 +1,28 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { 
     Button,
-    ButtonGroup,
     Card, 
     CardImg, 
     CardTitle, 
     CardSubtitle,
+    Container,
     Modal,
     ModalBody,
     ModalHeader
 } from 'reactstrap';
+import { toggleFavorite } from '../pokemon/pokemonSlice';
 import { selectAllTeams, addPokemonToTeam } from '../teams/teamsSlice';
-import { addFavorite } from '../favorites/favoritesSlice';
+import { bgStyles } from '../../utils/bgStyles';
+import FavIcon from '../../app/assets/favorite.png';
+import FavIconRed from '../../app/assets/favorite-red.png';
+import TeamIcon from '../../app/assets/add-to-team.png';
+import DetailsIcon from '../../app/assets/details.png';
 
 const PokemonCard = ({ pokemon }) => {
     const { id, name, image, types } = pokemon;
+    const bg = bgStyles(types);
 
     const teams = useSelector(selectAllTeams);
     const dispatch = useDispatch();
@@ -50,33 +57,50 @@ const PokemonCard = ({ pokemon }) => {
                     })}
                 </ModalBody>
             </Modal>
-            <Card className='pokemon-card mb-3'>
-                <CardTitle className='border-bottom p-1 text-center mb-0'>
-                    ({id}) {name}
+
+            <Card 
+                className='pokemon-card mb-3 pb-1'
+                style={{ 
+                    backgroundImage: `linear-gradient(to bottom right, ${bg[0]}, ${bg[1]})`,
+                    border: '1px solid black' 
+                }}
+            >
+                <CardTitle className='pokemon-card-title p-1 text-center mb-0 fw-bold'>
+                    {name}
                 </CardTitle>
-                <CardSubtitle className='pokemon-card-subtitle border-bottom p-1 mt-0'>
+                <CardSubtitle className='pokemon-card-subtitle p-1 mt-0'>
                     {types.map((type) => {
                         return <div key={type} className={type.toLowerCase()}>{type}</div>
                     })}
                 </CardSubtitle>
-                <CardImg src={image} className='card-img p-2 border-bottom' />
-                <ButtonGroup>
-                    <Button
-                        className='m-1'
-                        onClick={() => dispatch(addFavorite(pokemon))}
-                    ><i className='fa fa-heart' /></Button>
-                    <Button 
-                        className='m-1'
-                        onClick={() => setModalOpen(true)}
-                    >
-                        <i className='fa fa-star' />
-                    </Button>
-                    <Button
-                        className='m-1'
-                    >
-                        <i className='fa fa-user' />
-                    </Button>
-                </ButtonGroup>
+                <CardImg src={image} className='card-img p-2' />
+                <Container className='container-fluid d-flex justify-content-around ps-2 pe-2'>
+                    <img 
+                        className='card-icon'
+                        src={pokemon.favorite === false ? FavIcon : FavIconRed}
+                        data-toggle='tooltip'
+                        data-placement='top'
+                        title='Add To Favorites'
+                        onClick={() => dispatch(toggleFavorite(id))}
+                    />
+                    <img 
+                        src={TeamIcon}
+                        className='card-icon'
+                        data-toggle='tooltip'
+                        data-placement='top'
+                        title='Add To Team'
+                        onClick={() => setModalOpen(true)} 
+                    />
+                    <Link to={`/pokemon/${id}`}>
+                        <img 
+                            className='card-icon'
+                            src={DetailsIcon}
+                            data-toggle='tooltip'
+                            data-placement='top'
+                            title='Detailed View'
+                        />
+                    </Link>
+                </Container>
             </Card>
         </>
     );

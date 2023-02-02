@@ -1,8 +1,11 @@
+import { Container } from 'reactstrap';
 import TeamsList from '../features/teams/TeamsList';
 
 const TeamsPage = () => {
     return (
-        <TeamsList />
+        <Container fluid className='main-container'>
+            <TeamsList />
+        </Container>
     );
 };
 

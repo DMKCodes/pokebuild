@@ -13,9 +13,11 @@ import {
 import { 
     filterPokemonByType, 
     filterPokemonByName,
+    filterPokemonByFavorites,
     resetPokemon
 } from '../features/pokemon/pokemonSlice';
 import { BUTTONS } from '../app/shared/BUTTONS';
+import FavoriteIcon from '../app/assets/favorite-red.png';
 
 // Need to update Search to reset when empty / update dynamically.
 
@@ -27,6 +29,10 @@ const Filter = () => {
     const filterByType = (type) => {
         dispatch(filterPokemonByType(type));
     };
+
+    const filterByFavorite = () => {
+        dispatch(filterPokemonByFavorites());
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,12 +47,12 @@ const Filter = () => {
         <Container className='mb-5'>
             <Row className='ms-auto text-center'>
                 <Col className='mt-3 mb-2'>
-                    <p>Filter By Type</p>
+                    <p>Filter By Type: </p>
                     {BUTTONS.map((item) => {
                         return (
                             <button
                                 key={item.id}
-                                className='type-button'
+                                className='type-btn'
                                 data-toggle='tooltip'
                                 data-placement='top'
                                 title={item.name}
@@ -60,6 +66,16 @@ const Filter = () => {
                             </button>
                         );
                     })}
+                    <button 
+                        key='favorites'
+                        className='type-btn'
+                        data-toggle='tooltip'
+                        data-placement='top'
+                        title='Favorites'
+                        onClick={() => filterByFavorite()}
+                    >
+                        <img className='type-img' src={FavoriteIcon} alt='favorites'></img>
+                    </button>
                 </Col>
             </Row>
             <Row>

@@ -8,7 +8,7 @@ import {
     NavItem
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import PokeLogo from '../app/assets/pokeball.png';
+import Logo from '../app/assets/logo.png';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -18,15 +18,14 @@ const Header = () => {
             dark
             sticky='top'
             expand='md'
-            className='primary-blue'
+            className='pt-0 pb-0'
         >
             <NavbarBrand className='navbar-brand' href='/'>
                 <img
-                    src={PokeLogo}
+                    src={Logo}
                     alt='Pokeball Logo'
                     className='site-logo'
                 />
-                <h1 className='mt-2'>PokéBuild</h1>
             </NavbarBrand>
             <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
             <Collapse isOpen={menuOpen} navbar>
@@ -38,6 +37,8 @@ const Header = () => {
                         >
                             Pokédex
                         </NavLink>
+                    </NavItem>
+                    <NavItem>
                         <NavLink 
                             className='nav-link' 
                             to='/teams'

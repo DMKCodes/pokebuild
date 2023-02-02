@@ -1,15 +1,24 @@
-/* Colors */
+.main-container {
+  background-image: url('./app/assets/bg.png');
+  min-height: 100vh;
+}
 
-.primary-blue {
-  background-color: #0075BE;
+.fc {
+  display: flex;
+  justify-content: center;
 }
 
 /* Header */
 .site-logo {
-  height: 70px;
+  height: 35px;
   float: start;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .navbar-brand {
@@ -17,36 +26,76 @@
   align-items: center;
 }
 
+.nav-link {
+  color: black !important;
+}
+
+/* Filter */
+
+.type-btn {
+  border: none;
+  padding: 0;
+  margin: 3px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.type-img {
+  height: 50px;
+  width: 50px;
+}
+
 /* Pokemon Cards*/
 
 .pokemon-card {
-  height: 300px;
+  height: 265px;
   width: 150px;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
 }
 
 .pokemon-card-subtitle {
   display: flex;
   justify-content: center;
   font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .card-img {
-  height: 200px;
+  height: 175px;
+}
+
+.card-icon {
+  cursor: pointer;
+  height: 25px;
+  color: white;
+}
+.card-icon:hover {
+  transform: scale(1.1);
 }
 
 /* Teams */
 
-.type-button {
-  border: none;
-  padding: 0;
-  margin: 3px;
-  background-color: white;
+.team-header {
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
 }
 
-.type-img {
-  height: 50px;
-  width: 50px;
+.team-body {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.team-btn {
+  font-size: 10px;
+}
+
+/* Detail Pages */
+
+.pokemon-detail-container {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.pokemon-detail-body {
+  border-top: 1px solid black;
 }
 
 /* Type Text */

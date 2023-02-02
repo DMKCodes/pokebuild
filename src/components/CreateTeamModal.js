@@ -34,7 +34,7 @@ const CreateTeamModal = () => {
 
     return (
         <>
-            <Container className='d-flex justify-content-center mt-3'>
+            <Container className='d-flex justify-content-center pt-3'>
                 <Button onClick={() => setModalOpen(true)}>
                     Create A New Team
                 </Button>
