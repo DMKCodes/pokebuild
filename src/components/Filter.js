@@ -24,7 +24,7 @@ import FavoriteIcon from '../app/assets/favorite-red.png';
 const Filter = () => {
     const dispatch = useDispatch();
 
-    const [textInput, setTextInput] = useState('');
+    const [open, setOpen] = useState(false);
 
     const filterByType = (type) => {
         dispatch(filterPokemonByType(type));
@@ -34,82 +34,86 @@ const Filter = () => {
         dispatch(filterPokemonByFavorites());
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(filterPokemonByName(textInput));
-    };
-
     const resetPokemonList = () => {
         dispatch(resetPokemon());
     };
 
     return (
-        <Container className='mb-5'>
-            <Row className='ms-auto text-center'>
-                <Col className='mt-3 mb-2'>
-                    <p>Filter By Type: </p>
-                    {BUTTONS.map((item) => {
-                        return (
-                            <button
-                                key={item.id}
+        <Container className='p-5'>
+            <Button
+                onClick={() => setOpen(!open)}
+            >
+                Filter Results
+            </Button>
+            {open && (
+                <Container className='filter-container mt-3'>
+                    <Row className='ms-auto text-center'>
+                        <Col className='mt-3 mb-2'>
+                            <p>Filter By Type: </p>
+                            {BUTTONS.map((item) => {
+                                return (
+                                    <button
+                                        key={item.id}
+                                        className='type-btn'
+                                        data-toggle='tooltip'
+                                        data-placement='top'
+                                        title={item.name}
+                                        onClick={() => filterByType(item.name)}
+                                    >
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.name} 
+                                            className='type-img' 
+                                        />
+                                    </button>
+                                );
+                            })}
+                            <button 
+                                key='favorites'
                                 className='type-btn'
                                 data-toggle='tooltip'
                                 data-placement='top'
-                                title={item.name}
-                                onClick={() => filterByType(item.name)}
+                                title='Favorites'
+                                onClick={() => filterByFavorite()}
                             >
-                                <img 
-                                    src={item.image} 
-                                    alt={item.name} 
-                                    className='type-img' 
-                                />
+                                <img className='type-img' src={FavoriteIcon} alt='favorites'></img>
                             </button>
-                        );
-                    })}
-                    <button 
-                        key='favorites'
-                        className='type-btn'
-                        data-toggle='tooltip'
-                        data-placement='top'
-                        title='Favorites'
-                        onClick={() => filterByFavorite()}
-                    >
-                        <img className='type-img' src={FavoriteIcon} alt='favorites'></img>
-                    </button>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs='2' className='d-flex justify-content-center m-auto'>
-                    <Button
-                        className='mb-3'
-                        key={19}
-                        onClick={() => resetPokemonList()}
-                    >
-                        Reset
-                    </Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs='12' sm='8' md='6' className='mx-auto'>
-                    <Form onSubmit={(handleSubmit)}>
-                        <FormGroup className='text-center'>
-                            <Label for='search'>Search By Name: </Label>
-                            <Input
-                                type='search'
-                                placeholder='Search...'
-                                onChange={(e) => setTextInput(e.target.value)}
-                            />
-                            <Button 
-                                type='submit'
-                                value='Submit'
-                                className='mt-3'
+                        </Col>
+                    </Row>
+                    <Row className='ms-auto'>
+                        <Col xs='2' className='d-flex justify-content-center m-auto'>
+                            <Button
+                                className='mb-3'
+                                key={19}
+                                onClick={() => resetPokemonList()}
                             >
-                                Submit
+                                Reset
                             </Button>
-                        </FormGroup>
-                    </Form>
-                </Col>
-            </Row>
+                        </Col>
+                    </Row>
+                    <Row className='ms-auto'>
+                        <Col xs='12' sm='8' md='6' className='mx-auto'>
+                            <Form>
+                                <FormGroup className='text-center'>
+                                    <Label for='search'>Search By Name: </Label>
+                                    <Input
+                                        type='search'
+                                        placeholder='Search...'
+                                        onChange={(e) => dispatch(filterPokemonByName(e.target.value))}
+                                    />
+                                    <Button 
+                                        type='submit'
+                                        value='Submit'
+                                        className='mt-3'
+                                    >
+                                        Submit
+                                    </Button>
+                                </FormGroup>
+                            </Form>
+                        </Col>
+                    </Row>
+                </Container>
+            )}
         </Container>
     );
 };

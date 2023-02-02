@@ -15,8 +15,8 @@ const Team = (team) => {
     return (
         <Container key={id} className='border mt-3'>
             <Row className='team-header border-bottom'>
-                <Col>
-                    <p className='m-3 fw-bold'>{teamName}</p>
+                <Col className='d-flex'>
+                    <h3 className='m-3 fw-bold'>{teamName}</h3>
                 </Col>
                 <Col className='d-flex justify-content-end'>
                     <Button

@@ -1,6 +1,7 @@
 .main-container {
   background-image: url('./app/assets/bg.png');
   min-height: 100vh;
+  padding-bottom: 10px;
 }
 
 .fc {
@@ -32,6 +33,10 @@
 
 /* Filter */
 
+.filter-container {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .type-btn {
   border: none;
   padding: 0;
@@ -49,7 +54,7 @@
 .pokemon-card {
   height: 265px;
   width: 150px;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
 }
 
 .pokemon-card-subtitle {
@@ -96,6 +101,10 @@
 
 .pokemon-detail-body {
   border-top: 1px solid black;
+}
+
+.detail-img {
+  max-width: 100%;
 }
 
 /* Type Text */
