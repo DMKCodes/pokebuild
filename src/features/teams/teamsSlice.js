@@ -42,14 +42,50 @@ const teamsSlice = createSlice({
                     team;
                 })
             }
-        }
+        },
+        addMoveToPokemon: (state, action) => {
+            return {
+                ...state,
+                teamsArr: state.teamsArr.map((team) => {
+                    return team.id === action.payload.team ?
+                    {...team, pokemonOnTeam: team.pokemonOnTeam.map((pokemon) =>
+                        pokemon.id === action.payload.pokemon ?
+                        {...pokemon, moves: [...pokemon.moves, action.payload.move]} :
+                        pokemon
+                    )} :
+                    team;
+                })
+            };
+        },
+        removeMoveFromPokemon: (state, action) => {
+            return {
+                ...state,
+                teamsArr: state.teamsArr.map((team) => {
+                    return team.id === action.payload.team ?
+                    {...team, pokemonOnTeam: team.pokemonOnTeam.map((pokemon) => 
+                        pokemon.id === action.payload.pokemon ?
+                        {...pokemon, moves: pokemon.moves.filter((move) => 
+                            move.id !== action.payload.id)} :
+                        pokemon
+                    )} :
+                    team;
+                })
+            };
+        },
     },
     extraReducers: {}
 });
 
 export const teamsReducer = teamsSlice.reducer;
 
-export const { addTeam, deleteTeam, addPokemonToTeam } = teamsSlice.actions;
+export const { 
+    addTeam, 
+    deleteTeam, 
+    addPokemonToTeam,
+    removePokemonFromTeam,
+    addMoveToPokemon,
+    removeMoveFromPokemon
+} = teamsSlice.actions;
 
 export const selectAllTeams = (state) => {
     return state.teams.teamsArr;

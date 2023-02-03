@@ -7,7 +7,6 @@ import MoveDropdown from '../components/MoveDropdown';
 const TeamDetailPage = () => {
     const { teamId } = useParams();
     const team = useSelector(selectTeamById(teamId));
-    console.log(team);
 
     return (
         <>
@@ -15,7 +14,7 @@ const TeamDetailPage = () => {
                 return (
                     <>
                         <PokemonDetails pokemon={pokemon} key={pokemon.id} />
-                        {/* <MoveDropdown /> */}
+                        <MoveDropdown pokemon={pokemon} key={pokemon.id} id={team.id}/>
                     </>
                 );
             })}

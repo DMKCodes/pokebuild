@@ -1,4 +1,5 @@
 import { Container, Row, Col } from 'reactstrap';
+import MoveCard from '../moves/MoveCard';
 import { divideByTen, metersToFeet, kilogramsToPounds } from '../../utils/conversions';
 import { bgStyles } from '../../utils/bgStyles';
 
@@ -26,7 +27,7 @@ const PokemonDetails = ({ pokemon }) => {
                 <Col xs='8'>
                     <Row>
                         <Col>
-                            <p className='fw-bold'>Types</p>
+                            <h5 className='fw-bold mb-3'>Types</h5>
                         </Col>
                     </Row>
                     <Row>
@@ -45,7 +46,7 @@ const PokemonDetails = ({ pokemon }) => {
                     </Row>
                     <Row>
                         <Col>
-                            <p className='fw-bold'>Size</p>
+                            <h5 className='fw-bold mb-3 mt-3'>Size</h5>
                         </Col>
                     </Row>
                     <Row>
@@ -58,7 +59,7 @@ const PokemonDetails = ({ pokemon }) => {
                     </Row>
                     <Row>
                         <Col>
-                            <p className='fw-bold'>Base Stats</p>
+                            <h5 className='fw-bold mb-3 mt-3'>Base Stats</h5>
                         </Col>
                     </Row>
                     <Row>
@@ -82,6 +83,18 @@ const PokemonDetails = ({ pokemon }) => {
                         </Col>
                     </Row>
                 </Col>
+            </Row>
+            <Row>
+                <h5 className='fw-bold mb-1 mt-2'>Moves</h5>
+            </Row>
+            <Row>
+                {pokemon.moves.map((move) => {
+                    return (
+                        <Col xs='6' sm='3' key={move.value}>
+                            <MoveCard move={move} />
+                        </Col>
+                    );
+                })}
             </Row>
         </Container>
     );

@@ -27,7 +27,8 @@ export const fetchPokemon = createAsyncThunk(
                             defense: pokeData.stats[2].base_stat,
                             specialAttack: pokeData.stats[3].base_stat,
                             specialDefense: pokeData.stats[4].base_stat,
-                            speed: pokeData.stats[5].base_stat
+                            speed: pokeData.stats[5].base_stat,
+                            moves: []
                         });
                     });
 
