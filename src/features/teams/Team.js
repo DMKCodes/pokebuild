@@ -22,7 +22,8 @@ const Team = (team) => {
                 <Col className='d-flex justify-content-end'>
                     <Link to={`/team/${id}`}>
                         <Button
-                            className='team-btn btn-success mt-3 mb-3 ms-2 me-2'
+                            className='team-btn mt-3 mb-3 ms-2 me-2'
+                            color='primary'
                             type='button'
                         >
                             Team Details

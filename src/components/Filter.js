@@ -43,6 +43,7 @@ const Filter = () => {
     return (
         <Container className='p-5'>
             <Button
+                color='primary'
                 onClick={() => setOpen(!open)}
             >
                 Filter Results

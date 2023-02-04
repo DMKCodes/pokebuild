@@ -44,17 +44,29 @@ const PokemonCard = ({ pokemon }) => {
                     Add {name} To Team: 
                 </ModalHeader>
                 <ModalBody>
-                    {teams.map((team) => {
-                        return (
-                            <Button 
-                                className='ms-2'
-                                key={team.id}
-                                onClick={() => addPokemon(team)}
-                            >
-                                {team.teamName}
-                            </Button>
-                        )
-                    })}
+                    {teams.length > 0 
+                        ? teams.map((team) => {
+                                return (
+                                    <Button 
+                                        className='ms-2'
+                                        color='primary'
+                                        key={team.id}
+                                        onClick={() => addPokemon(team)}
+                                    >
+                                        {team.teamName}
+                                    </Button>
+                                )
+                        })
+                        : 
+                        <>
+                            <div>You have no teams.  Go to Teams page?</div>
+                            <Link to='/teams'>
+                                <Button className='mt-3' color='primary'>
+                                    Teams
+                                </Button>
+                            </Link>
+                        </>
+                    }
                 </ModalBody>
             </Modal>
 
