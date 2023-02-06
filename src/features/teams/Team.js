@@ -14,7 +14,7 @@ const Team = (team) => {
     };
     
     return (
-        <Container key={id} className='border mt-3'>
+        <Container key={id} className='team-container border mt-3'>
             <Row className='team-header border-bottom'>
                 <Col className='d-flex'>
                     <h3 className='m-3 fw-bold'>{teamName}</h3>

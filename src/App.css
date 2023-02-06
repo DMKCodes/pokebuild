@@ -10,6 +10,7 @@
 }
 
 /* Header */
+
 .site-logo {
   height: 35px;
   float: start;
@@ -30,6 +31,8 @@
 .nav-link {
   color: black !important;
 }
+
+/* Subheader */
 
 /* Filter */
 
@@ -100,6 +103,10 @@
 
 /* Teams */
 
+.team-container {
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+}
+
 .team-header {
   background-color: rgba(255, 255, 255, 0.7);
   font-size: 24px;
@@ -125,7 +132,7 @@
 }
 
 .detail-img {
-  max-width: 100%;
+  max-width: 80%;
 }
 
 .move-selector {

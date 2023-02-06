@@ -41,7 +41,7 @@ const Filter = () => {
     };
 
     return (
-        <Container className='p-5'>
+        <Container className='ps-1 pt-3 pb-4'>
             <Button
                 color='primary'
                 onClick={() => setOpen(!open)}
@@ -49,7 +49,7 @@ const Filter = () => {
                 Filter Results
             </Button>
             {open && (
-                <Container className='filter-container mt-3'>
+                <Container className='filter-container mt-4 ms-2'>
                     <Row className='ms-auto text-center'>
                         <Col className='mt-3 mb-2'>
                             {BUTTONS.map((item) => {
