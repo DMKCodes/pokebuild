@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { selectAllMoves } from '../features/moves/movesSlice';
 import { addMoveToPokemon } from '../features/teams/teamsSlice';
 import { capitalize } from '../utils/capitalize';
@@ -10,7 +10,7 @@ const MoveDropdown = ({ pokemon, id }) => {
     const moveNames = moves.map((move) => {
         return {
             id: move.id,
-            value: capitalize(move.name),
+            name: capitalize(move.name),
             label: capitalize(move.name),
             damageClass: capitalize(move.damageClass),
             flavorText: move.flavorText,

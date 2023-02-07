@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import TeamsPage from './pages/TeamsPage';
 import PokemonDetailPage from './pages/PokemonDetailPage';
 import TeamDetailPage from './pages/TeamDetailPage';
+import MovesPage from './pages/MovesPage';
 import Header from './components/Header';
 import { fetchPokemon } from './features/pokemon/pokemonSlice';
 import { fetchMoves } from './features/moves/movesSlice';
@@ -24,6 +25,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route path='teams' element={<TeamsPage />} />
+                <Route path='moves' element={<MovesPage />} />
                 <Route
                     path='/pokemon/:pokemonId'
                     element={<PokemonDetailPage />}

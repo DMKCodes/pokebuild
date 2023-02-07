@@ -41,6 +41,14 @@ const Header = () => {
                     <NavItem>
                         <NavLink 
                             className='nav-link' 
+                            to='/moves'
+                        >
+                            Moves
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink 
+                            className='nav-link' 
                             to='/teams'
                         >
                             My Teams
